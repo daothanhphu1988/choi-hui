@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import {
   type ColumnDef,
   type SortingState,
@@ -20,6 +20,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -37,6 +38,8 @@ export function DataTable<TData, TValue>({
   pageSize = 10,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [pendingRowId, setPendingRowId] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   const table = useReactTable({
     data,
@@ -74,8 +77,16 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  className={onRowClick ? "cursor-pointer" : undefined}
-                  onClick={() => onRowClick?.(row.original)}
+                  className={cn(
+                    onRowClick && "cursor-pointer transition-opacity duration-150",
+                    isPending &&
+                      (pendingRowId === row.id ? "opacity-60" : "opacity-40"),
+                  )}
+                  onClick={() => {
+                    if (!onRowClick) return;
+                    setPendingRowId(row.id);
+                    startTransition(() => onRowClick(row.original));
+                  }}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
