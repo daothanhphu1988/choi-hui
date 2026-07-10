@@ -5,6 +5,7 @@ import { LogOut, User as UserIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -46,12 +47,14 @@ export function UserMenu() {
         }
       />
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel className="flex flex-col">
-          <span className="font-medium">{profile.full_name}</span>
-          <span className="text-xs font-normal text-muted-foreground">
-            {roleLabels[profile.role]}
-          </span>
-        </DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="flex flex-col">
+            <span className="font-medium">{profile.full_name}</span>
+            <span className="text-xs font-normal text-muted-foreground">
+              {roleLabels[profile.role]}
+            </span>
+          </DropdownMenuLabel>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem render={<Link href="/settings/profile" />}>
           <UserIcon /> Hồ sơ cá nhân

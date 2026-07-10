@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Quản lý Chơi Hụi",
-  description: "Ứng dụng quản lý dây hụi, thành viên, kỳ hụi và công nợ",
+  title: "Sổ Hụi",
+  description: "Ứng dụng theo dõi dây hụi, thành viên, kỳ hụi và công nợ",
 };
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-# Quản Lý Chơi Hụi
+# Sổ Hụi
 
 Webapp quản lý dây hụi (Vietnamese ROSCA): dây hụi, thành viên, kỳ hụi, hốt hụi (bốc thăm & đấu giá), thanh toán, công nợ, báo cáo, nhật ký hoạt động, thông báo, phân quyền, tìm kiếm.
 

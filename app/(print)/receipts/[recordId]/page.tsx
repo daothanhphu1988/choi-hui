@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import { HandCoins } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { AutoPrint } from "@/components/payments/auto-print";
+import { Logo } from "@/components/shared/logo";
 import { formatVND } from "@/lib/utils/currency";
 import { formatDate } from "@/lib/utils/dates";
 import { paymentMethodLabels as methodLabels } from "@/lib/utils/payment-method";
@@ -60,9 +60,7 @@ export default async function ReceiptPrintPage({
     <div className="space-y-4 text-sm">
       <AutoPrint />
       <div className="flex flex-col items-center gap-2 text-center">
-        <div className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-          <HandCoins className="size-5" />
-        </div>
+        <Logo className="size-10" iconClassName="size-5" />
         <h1 className="text-base font-semibold">BIÊN NHẬN ĐÓNG HỤI</h1>
         <p className="text-muted-foreground">{chain?.name}</p>
       </div>

@@ -14,7 +14,7 @@ function currentTitle(pathname: string): string {
   const match = navItems
     .filter((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))
     .sort((a, b) => b.href.length - a.href.length)[0];
-  return match?.title ?? "Quản Lý Chơi Hụi";
+  return match?.title ?? "Sổ Hụi";
 }
 
 export function Topbar({ notifications }: { notifications: NotificationRow[] }) {

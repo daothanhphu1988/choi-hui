@@ -1,12 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
-import { HandCoins } from "lucide-react";
 import { login } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
+import { Logo } from "@/components/shared/logo";
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, undefined);
@@ -14,12 +14,10 @@ export default function LoginPage() {
   return (
     <div className="w-full max-w-sm space-y-6">
       <div className="flex flex-col items-center gap-3 text-center">
-        <div className="flex size-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/25">
-          <HandCoins className="size-6" />
-        </div>
+        <Logo className="size-12" iconClassName="size-6" />
         <div className="space-y-1">
           <h1 className="text-2xl font-semibold tracking-tight">
-            Quản Lý Chơi Hụi
+            Sổ Hụi
           </h1>
           <p className="text-sm text-muted-foreground">
             Đăng nhập để quản lý dây hụi của bạn
