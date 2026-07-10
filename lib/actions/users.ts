@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { randomUUID } from "node:crypto";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/roles";
@@ -11,14 +10,20 @@ export async function inviteUser(values: {
   email: string;
   fullName: string;
   role: UserRole;
+  password: string;
 }) {
   const actor = await requireRole(["chu_hui"]);
+
+  if (values.password.length < 6) {
+    throw new Error("Mật khẩu phải có ít nhất 6 ký tự");
+  }
+
   const admin = createAdminClient();
 
   const { data, error } = await admin.auth.admin.createUser({
     email: values.email,
     email_confirm: true,
-    password: randomUUID().slice(0, 12),
+    password: values.password,
     user_metadata: { full_name: values.fullName, role: values.role },
   });
 
