@@ -1,6 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
+import { unstable_rethrow } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -61,6 +62,7 @@ export function ChainForm({
       try {
         await onSubmit(values);
       } catch (error) {
+        unstable_rethrow(error);
         toast.error(error instanceof Error ? error.message : "Đã xảy ra lỗi");
       }
     });
